@@ -12,6 +12,7 @@ public:
 
 	void setOctets(int octets_values[number_of_octets]);
 	void setOctet(int octet_index, int octet_value);
-
+	std::string toDecimalString();
+	void toArray(int tab[]);
 };
 

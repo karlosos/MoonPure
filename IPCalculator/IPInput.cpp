@@ -10,7 +10,13 @@ IPInput::IPInput()
 		getIPAndMaskFromCidr();
 	else
 		getIPAndMaskFromTwoAdresses();
-		
+
+	calculateNetworkAdress();
+	calculateBroadcastAdress();
+	calculateHosts();
+	calculateMinAdress();
+	calculateMaxAdress();
+
 }
 
 
