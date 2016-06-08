@@ -5,7 +5,8 @@
 IPInput::IPInput()
 	: Input("Podaj adres IP i maske: ")
 {
-	if (this->input_line.find('\\'))
+	int pos = this->input_line.find('/');
+	if (pos > 0)
 		getIPAndMaskFromCidr();
 	else
 		getIPAndMaskFromTwoAdresses();
@@ -83,5 +84,10 @@ Adress IPInput::getMaskFromCidr(std::string input_cidr_in_string)
 
 void IPInput::getIPAndMaskFromTwoAdresses()
 {
+	std::string input = this->input_line;
+	std::string ip = input.substr(0, input.find(' '));
+	std::string cidr = input.substr(input.find(' ') + 1, std::string::npos);
 
+	this->ip = getIPFromString(ip);
+	this->mask = getIPFromString(cidr);
 }
