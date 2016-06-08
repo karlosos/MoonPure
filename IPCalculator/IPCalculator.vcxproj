@@ -118,13 +118,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Adress.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="IPInput.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Octet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adress.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="IPInput.h" />
+    <ClInclude Include="Octet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

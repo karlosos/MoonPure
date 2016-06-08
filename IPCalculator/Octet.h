@@ -11,5 +11,6 @@ public:
 	int getValue();
 private:
 	int octet_value;
+	std::string DecToBin(int decimal);
 };
 
