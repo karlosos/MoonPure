@@ -3,6 +3,7 @@
 class Octet
 {
 public:
+	Octet();
 	Octet(int octet_value);
 	~Octet();
 

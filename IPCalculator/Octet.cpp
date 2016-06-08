@@ -1,6 +1,10 @@
 #include "Octet.h"
 
 
+Octet::Octet()
+{
+	this->octet_value = 0;
+}
 
 Octet::Octet(int octet_value)
 {

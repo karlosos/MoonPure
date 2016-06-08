@@ -38,7 +38,6 @@ Adress IPInput::getIPFromString(std::string input_ip_in_string)
 	for (int i = 0; i < 4; i++)
 	{
 		octets_string[i] = ip_string.substr(0, ip_string.find('.'));
-		octet_values[i] = std::stoi(octets_string[i]);
 		ip_string = ip_string.substr(ip_string.find('.')+1, std::string::npos);
 	}
 
