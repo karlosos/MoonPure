@@ -34,7 +34,7 @@ std::string Octet::toDecimalString()
 
 int Octet::getValue()
 {
-	return 0;
+	return this->octet_value;
 }
 
 std::string Octet::DecToBin(int decimal)
@@ -55,4 +55,28 @@ std::string Octet::DecToBin(int decimal)
 	}
 
 	return binary;
+}
+
+int Octet::BinToDec(std::string binary)
+{
+	int pos = binary.find('1');
+	if (pos < 0)
+		pos = 0;
+
+	binary = binary.substr(pos, std::string::npos);
+	int x;	
+	int power = 1;
+	int length = binary.length();
+	int system = 2;
+	int result = 0;
+
+	for (int i = length - 1; i >= 0; i--)
+	{
+		if (binary[i] == '1') x = 1;
+		if (binary[i] == '0') x = 0;
+		result += x * power;
+
+		power *= system;
+	}
+	return result;
 }

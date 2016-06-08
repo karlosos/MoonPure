@@ -1,7 +1,6 @@
 #include "IPInput.h"
 
 
-
 IPInput::IPInput()
 	: Input("Podaj adres IP i maske: ")
 {
@@ -17,6 +16,14 @@ IPInput::IPInput()
 	calculateMinAdress();
 	calculateMaxAdress();
 
+	std::cout << "IP: " << this->ip.toDecimalString() << std::endl;
+	std::cout << "Mask: " << this->mask.toDecimalString() << std::endl;
+	std::cout << "Network: " << this->network.toDecimalString() << std::endl;
+	std::cout << "Broadcast: " << this->broadcast.toDecimalString() << std::endl;
+	std::cout << "Ilosc hostow: " << this->hosts << std::endl;
+	std::cout << "Min adres: " << this->start_ip.toDecimalString() << std::endl;
+	std::cout << "Max adres: " << this->end_ip.toDecimalString() << std::endl;
+	
 }
 
 
@@ -96,4 +103,65 @@ void IPInput::getIPAndMaskFromTwoAdresses()
 
 	this->ip = getIPFromString(ip);
 	this->mask = getIPFromString(cidr);
+}
+
+void IPInput::calculateNetworkAdress()
+{
+	int ip_binary[32];
+	this->ip.toArray(ip_binary);
+
+	int mask_binary[32];
+	this->mask.toArray(mask_binary);
+
+	for (int i = 0; i < 32; i++)
+	{
+		if (mask_binary[i] == 0)
+			ip_binary[i] = 0;
+	}
+
+	this->network.setOctetsFromBinaryArray(ip_binary);
+}
+
+void IPInput::calculateBroadcastAdress()
+{
+	int ip_binary[32];
+	this->ip.toArray(ip_binary);
+
+	int mask_binary[32];
+	this->mask.toArray(mask_binary);
+
+	for (int i = 0; i < 32; i++)
+	{
+		if (mask_binary[i] == 0)
+			ip_binary[i] = 1;
+	}
+
+	this->broadcast.setOctetsFromBinaryArray(ip_binary);
+}
+
+void IPInput::calculateHosts()
+{
+	int mask[32];
+	this->mask.toArray(mask);
+	int number_of_zeroes = 0;
+	for (int i = 0; i < 32; i++) {
+		if (mask[i] == 0)
+			number_of_zeroes++;
+	}
+
+	this->hosts = pow(2, number_of_zeroes) - 2;
+}
+
+void IPInput::calculateMinAdress()
+{
+	this->start_ip = this->network;
+	this->start_ip.setOctet(3, this->network.getLastOctet() + 1);
+}
+
+void IPInput::calculateMaxAdress()
+{
+	this->end_ip = this->broadcast;
+	this->end_ip.setOctet(3, this->broadcast.getLastOctet() - 1);
+	int x = this->broadcast.getLastOctet();
+	int y = 3;
 }

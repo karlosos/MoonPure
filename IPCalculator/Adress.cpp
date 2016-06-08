@@ -17,6 +17,19 @@ void Adress::setOctets(int octets_values[number_of_octets])
 	}
 }
 
+void Adress::setOctetsFromBinaryArray(int adress[32])
+{
+	size_t index = 0;
+	for (int i = 0; i < 4; i++) {
+		std::string octet = "";
+		for (int j = 0; j < 8; j++) {
+			octet += std::to_string(adress[index++]);
+			int x = 0;
+		}
+		this->octets[i] = Octet(this->octets[i].BinToDec(octet));
+	}
+}
+
 void Adress::setOctet(int octet_index, int octet_value)
 {
 	this->octets[octet_index] = Octet(octet_value);
@@ -41,11 +54,16 @@ void Adress::toArray(int tab[32])
 	for (int i = 0; i < number_of_octets; i++) {
 		std::string binary_octet = this->octets[i].toBinaryString();
 		for (int j = 0; j < binary_octet.size(); j++) {
-			binary[index++] = binary_octet.at(i) - '0';
+			binary[index++] = binary_octet.at(j) - '0';
 		}
 	}
 
 	for (int i = 0; i < 32; i++) {
 		tab[i] = binary[i];
 	}
+}
+
+int Adress::getLastOctet()
+{
+	return this->octets[3].getValue();
 }
