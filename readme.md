@@ -1,18 +1,18 @@
 # Kalkulator IP
 
-# Dane wejœciowe
+# Dane wejÅ›ciowe
 
 ## Format cidr
 
 ```[adres_ip]/[maska_cidr]``` - ```192.168.1.3/24```
 
-## Format dwa adresy ze spacj¹
+## Format dwa adresy ze spacjÄ…
 
 ```[adres_ip] [maska]``` - ```192.167.1.23 255.255.254.0```
 
-# Dane wyjœciowe 
+# Dane wyjÅ›ciowe 
 
-### Dla notacji za spacj¹
+### Dla notacji za spacjÄ…
 
 ```
 Podaj adres IP i maske: 10.13.23.132 255.254.0.0
