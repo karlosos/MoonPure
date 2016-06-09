@@ -34,8 +34,8 @@ IPInput::~IPInput()
 void IPInput::getIPAndMaskFromCidr()
 {
 	std::string input = this->input_line;
-	std::string ip = input.substr(0, input.find('//'));
-	std::string cidr = input.substr(input.find('//')+1, std::string::npos);
+	std::string ip = input.substr(0, input.find('/'));
+	std::string cidr = input.substr(input.find('/')+1, std::string::npos);
 
 	this->ip = getIPFromString(ip);
 	this->mask = getMaskFromCidr(cidr);
